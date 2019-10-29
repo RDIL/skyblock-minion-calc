@@ -35,6 +35,7 @@ import {
     iceProgression,
     combat2
 } from "./Store"
+import { isJsxOrFunc } from "./Common"
 
 /**
  * @default
@@ -44,7 +45,7 @@ import {
  * @todo Finish putting all minions in
  * @returns either the ErrorHolder or the data
  */
-export default (tier, minion) => {
+export default cost = (tier, minion) => {
     let e = new RomanNumeral(tier).toString()
 
     switch (minion) {
@@ -116,6 +117,7 @@ export default (tier, minion) => {
 }
 
 /**
+ * @function
  * @description Calculate cost of enchanted item
  * @param tier The tier
  * @param minion The minion's name
@@ -128,15 +130,19 @@ export default (tier, minion) => {
  * - Index 0: Raw items per enchanted item
  * - Index 1: Different cost then most other enchanted items? (typically false)
  * - Index 2: Tier requires enchanted items (for ResultHolder component)
+ * - Index 3: Show previous tiers
+ * - Index 4: Previous tier data (can be JSX!)
  */
-export let enchantedItemCost = (tier, minion, total) => {
+export let enchantedItemCost = (tier, minion) => {
     /* eslint-disable */
     const tierInt = new RomanNumeral(tier).toInt()
     let l = [
         0,
         true,
         // tier is bigger then 4
-        tierInt >= 4
+        tierInt >= 4,
+        tierInt < 2,
+        null
     ]
 
     if (minion == Minions.enderman) {
@@ -156,6 +162,22 @@ export let enchantedItemCost = (tier, minion, total) => {
         l[0] = 160
         l[1] = false
     }
+
+    l[4] = (
+        l[3] ? (
+            () => {
+                const x = cost(tier, minion)
+                if (isJsxOrFunc(x)) {
+                    return x
+                }
+                let z = 0
+                for(let p = 0; p < tierInt - 1; p++) {
+                    z += x
+                }
+                return z
+            }
+        )() : null
+    )
 
     return l
     /* eslint-enable */

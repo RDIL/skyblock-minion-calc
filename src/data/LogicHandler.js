@@ -38,12 +38,11 @@ import {
 import { isJsxOrFunc } from "./Common"
 
 /**
- * @default
  * @function
  * @param tier The tier (in roman numeral form) to use
  * @param minion The minion name to use
  * @todo Finish putting all minions in
- * @returns either the ErrorHolder or the data
+ * @returns either the ErrorHolder or the cost data
  */
 let cost = (tier, minion) => {
     let e = new RomanNumeral(tier).toString()
@@ -118,10 +117,11 @@ let cost = (tier, minion) => {
 
 /**
  * @function
+ * @default
  * @description Calculate cost of enchanted item
  * @param tier The tier
  * @param minion The minion's name
- * @param total The total raw items required for the tier
+ * @param totalForSelectedTier The total raw items required for the tier
  * @see ResultHolder
  * @returns an array with the metadata
  * @todo handle bundled items
@@ -131,22 +131,28 @@ let cost = (tier, minion) => {
  * - Index 1: Different cost then most other enchanted items? (typically false)
  * - Index 2: Tier requires enchanted items (for ResultHolder component)
  * - Index 3: Show previous tiers
- * - Index 4: Previous tier data (nullable!)
- * - Index 5:
+ * - Index 4: Current tier data (nullable!)
+ * - Index 5: Cost (either JSX component or int)
  */
-export let metaArray = (tier, minion) => {
+let metaArray = (tier, minion) => {
     // it seems eslint thinks of this as a shitshow
     // so outta here eslint
     /* eslint-disable */
     const x = cost(tier, minion)
     const tierInt = new RomanNumeral(tier).toInt()
     let l = [
+        // raw items per enchanted item
         0,
+        // different cost then normal enchanted items?
         true,
-        // tier is bigger then 4
+        // show enchanted item cost?
         tierInt >= 4,
+        // show previous tier data?
         tierInt < 2 && !isJsxOrFunc(x),
-        null
+        // previous tier data
+        null,
+        // raw item cost
+        x
     ]
 
     if (minion == Minions.enderman) {
@@ -182,3 +188,5 @@ export let metaArray = (tier, minion) => {
     return l
     /* eslint-enable */
 }
+
+export default metaArray

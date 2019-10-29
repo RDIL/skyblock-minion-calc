@@ -26,7 +26,7 @@ import Input from "@material-ui/icons/Input"
 import Delete from "@material-ui/icons/Delete"
 import Tooltip from "@material-ui/core/Tooltip"
 import { makeStyles } from "@material-ui/core/styles"
-import LogicHandler, { enchantedItemCost } from "../data/LogicHandler"
+import LogicHandler from "../data/LogicHandler"
 
 export default props => {
     const s = <br />
@@ -42,14 +42,13 @@ export default props => {
 
     /* eslint-disable */
     let doLogic = e => {
-        const total = LogicHandler(tier, minion)
-        // todo: remove the entire statement after adding all data
-        if (typeof total != "number") {
-            // it isn't an int, so its JSX
+        const meta = LogicHandler(tier, minion)
+        if (typeof meta[5] != "number") {
+            // the raw item count isn't a number, so its JSX
             setResults(
                 <div>
                     {s}
-                    {total}
+                    {meta[5]}
                 </div>
             )
         } else {
@@ -57,8 +56,7 @@ export default props => {
                 <div>
                     {s}
                     <ResultHolder
-                        itemCount={total}
-                        metaArray={enchantedItemCost(tier, minion, total)}
+                        meta={meta}
                     />
                 </div>
             )

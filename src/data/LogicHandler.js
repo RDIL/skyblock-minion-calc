@@ -116,8 +116,6 @@ let cost = (tier, minion) => {
     }
 }
 
-export default cost
-
 /**
  * @function
  * @description Calculate cost of enchanted item
@@ -134,18 +132,20 @@ export default cost
  * - Index 2: Tier requires enchanted items (for ResultHolder component)
  * - Index 3: Show previous tiers
  * - Index 4: Previous tier data (nullable!)
+ * - Index 5:
  */
-export let otherMetaArray = (tier, minion) => {
+export let metaArray = (tier, minion) => {
     // it seems eslint thinks of this as a shitshow
     // so outta here eslint
     /* eslint-disable */
+    const x = cost(tier, minion)
     const tierInt = new RomanNumeral(tier).toInt()
     let l = [
         0,
         true,
         // tier is bigger then 4
         tierInt >= 4,
-        tierInt < 2,
+        tierInt < 2 && !isJsxOrFunc(x),
         null
     ]
 
@@ -171,12 +171,6 @@ export let otherMetaArray = (tier, minion) => {
     l[4] = l[3]
         ? // it should show, so run this lambda
           (() => {
-              const x = cost(tier, minion)
-              // on error
-              if (isJsxOrFunc(x)) {
-                  return null
-              }
-              // ok no error :D
               let z = 0
               for (let p = 0; p < tierInt - 1; p++) {
                   z += x

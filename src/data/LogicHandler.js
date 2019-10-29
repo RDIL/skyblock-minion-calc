@@ -45,7 +45,7 @@ import { isJsxOrFunc } from "./Common"
  * @todo Finish putting all minions in
  * @returns either the ErrorHolder or the data
  */
-export default cost = (tier, minion) => {
+let cost = (tier, minion) => {
     let e = new RomanNumeral(tier).toString()
 
     switch (minion) {
@@ -116,6 +116,8 @@ export default cost = (tier, minion) => {
     }
 }
 
+export default cost
+
 /**
  * @function
  * @description Calculate cost of enchanted item
@@ -131,9 +133,11 @@ export default cost = (tier, minion) => {
  * - Index 1: Different cost then most other enchanted items? (typically false)
  * - Index 2: Tier requires enchanted items (for ResultHolder component)
  * - Index 3: Show previous tiers
- * - Index 4: Previous tier data (can be JSX!)
+ * - Index 4: Previous tier data (nullable!)
  */
-export let enchantedItemCost = (tier, minion) => {
+export let otherMetaArray = (tier, minion) => {
+    // it seems eslint thinks of this as a shitshow
+    // so outta here eslint
     /* eslint-disable */
     const tierInt = new RomanNumeral(tier).toInt()
     let l = [
@@ -163,21 +167,23 @@ export let enchantedItemCost = (tier, minion) => {
         l[1] = false
     }
 
-    l[4] = (
-        l[3] ? (
-            () => {
-                const x = cost(tier, minion)
-                if (isJsxOrFunc(x)) {
-                    return x
-                }
-                let z = 0
-                for(let p = 0; p < tierInt - 1; p++) {
-                    z += x
-                }
-                return z
-            }
-        )() : null
-    )
+    // previous tier data is...
+    l[4] = l[3]
+        ? // it should show, so run this lambda
+          (() => {
+              const x = cost(tier, minion)
+              // on error
+              if (isJsxOrFunc(x)) {
+                  return null
+              }
+              // ok no error :D
+              let z = 0
+              for (let p = 0; p < tierInt - 1; p++) {
+                  z += x
+              }
+              return z
+          })()
+        : null
 
     return l
     /* eslint-enable */

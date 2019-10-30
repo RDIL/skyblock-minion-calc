@@ -118,7 +118,7 @@ let cost = (tier, minion) => {
 /**
  * @function
  * @default
- * @description Calculate cost of enchanted item
+ * @description Get the array of data for the result
  * @param tier The tier
  * @param minion The minion's name
  * @param totalForSelectedTier The total raw items required for the tier
@@ -174,16 +174,14 @@ let metaArray = (tier, minion) => {
     }
 
     // previous tier data is...
-    l[4] = l[3]
-        ? // it should show, so run this lambda
-          (() => {
-              let z = 0
-              for (let p = 0; p < tierInt - 1; p++) {
-                  z += x
-              }
-              return z
-          })()
-        : null
+    // todo: make into mini version of existing result holder
+    if(l[3]) {
+        let z = 0
+        for (let p = 0; p < tierInt - 1; p++) {
+            z += x
+        }
+        l[3] = z
+    }
 
     return l
     /* eslint-enable */

@@ -116,7 +116,8 @@ export default props => {
                     </Tooltip>
                     {s}
                     {results}
-                    {s}{s}
+                    {s}
+                    {s}
                     <AuthorCard />
                 </Card>
                 {s}

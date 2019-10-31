@@ -110,7 +110,10 @@ let cost = (tier, minion) => {
         //    return iceProgression[e]
         default:
             return (
-                <ErrorHolder message="We don't have the data for this minion yet, but don't worry, we will soon" showReportButton={true} />
+                <ErrorHolder
+                    message="We don't have the data for this minion yet, but don't worry, we will soon"
+                    showReportButton={true}
+                />
             )
     }
 }

@@ -55,9 +55,7 @@ export default props => {
             setResults(
                 <div>
                     {s}
-                    <ResultHolder
-                        meta={meta}
-                    />
+                    <ResultHolder meta={meta} />
                 </div>
             )
         }

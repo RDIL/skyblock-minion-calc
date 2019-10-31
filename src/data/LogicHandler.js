@@ -175,7 +175,7 @@ let metaArray = (tier, minion) => {
 
     // previous tier data is...
     // todo: make into mini version of existing result holder
-    if(l[3]) {
+    if (l[3]) {
         let z = 0
         for (let p = 0; p < tierInt - 1; p++) {
             z += x

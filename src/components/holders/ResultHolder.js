@@ -18,9 +18,12 @@ import React from "react"
 import ReactMarkdown from "react-markdown"
 
 export default props => {
-    let base = `## Result\n\nIt will take ${props.meta[6]} raw items to make that minion.\n\n### Enchantments\n\n`
+    let base = `## Result\n\nIt will take ${
+        props.meta[6]
+    } raw items to make that minion.\n\n### Enchantments\n\n`
     // divide total cost by calculated price per enchanted item
     let cost = props.meta[6] / props.meta[0]
+    // eslint-disable-next-line
     let b1 = cost % 1 == 0
     if (props.meta[2] && b1) {
         base +=
@@ -29,7 +32,8 @@ export default props => {
                 ? `\n\n**Warning**: This item has an unusual enchanted item cost, and depending on the item may require more or less of the item to craft the enchanted form!`
                 : "")
     } else if (props.meta[2] && !b1) {
-        base += "Failed to calculate because the number of enchanted items had decimals!"
+        base +=
+            "Failed to calculate because the number of enchanted items had decimals!"
     } else {
         base += "The specified tier does not require enchanted items."
     }

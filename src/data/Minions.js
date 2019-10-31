@@ -19,6 +19,7 @@
  * @default
  * @constant
  * @returns the object with all the minions
+ * @type Object
  */
 export default {
     cobblestone: "Cobblestone",

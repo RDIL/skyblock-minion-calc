@@ -17,7 +17,7 @@
 import React from "react"
 import Minions from "./Minions"
 import RomanNumeral from "js-roman-numerals"
-import ErrorHolder from "../components/ErrorHolder"
+import ErrorHolder from "../components/holders/ErrorHolder"
 import {
     woodMinions,
     farmCommon,

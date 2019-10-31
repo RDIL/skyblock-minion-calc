@@ -289,19 +289,19 @@ export const cowProgression = {
  *
  * Total items required: 323632
  */
-export const beanProgression = {
-    I: 80,
-    II: 160,
-    III: 320,
-    IV: 512,
-    V: 1280,
-    VI: 3840,
-    VII: 10240,
-    VIII: 20480,
-    IX: 40960,
-    X: 81920,
-    XI: 163840
-}
+export const beanProgression = buildProgressionData(
+    80,
+    160,
+    320,
+    512,
+    1280,
+    3840,
+    10240,
+    20480,
+    40960,
+    81920,
+    163840
+)
 
 /**
  * @constant
@@ -311,19 +311,19 @@ export const beanProgression = {
  *
  * Total items required: 1593088
  */
-export const lapisProgression = {
-    I: 256,
-    II: 512,
-    III: 1280,
-    IV: 3840,
-    V: 10240,
-    VI: 20480,
-    VII: 40960,
-    VIII: 81920,
-    IX: 204800,
-    X: 409600,
-    XI: 819200
-}
+export const lapisProgression = buildProgressionData(
+    256,
+    512,
+    1280,
+    3840,
+    10240,
+    20480,
+    40960,
+    81920,
+    204800,
+    409600,
+    819200
+)
 
 /**
  * @constant
@@ -333,39 +333,77 @@ export const lapisProgression = {
  *
  * Total items required: 162736
  */
-export const iceProgression = {
-    I: 80,
-    II: 160,
-    III: 320,
-    IV: 512,
-    V: 1152,
-    VI: 2304,
-    VII: 4608,
-    VIII: 10240,
-    IX: 20480,
-    X: 40960,
-    XI: 81920
-}
+export const iceProgression = buildProgressionData(
+    80,
+    160,
+    320,
+    512,
+    1152,
+    2304,
+    4608,
+    10240,
+    20480,
+    40960,
+    81920
+)
 
 /**
  * @constant
- * @returns the object with the tier data
+ * @returns the Object with the tier data
  * Used by minions:
  * - Creeper
  * - Cave Spider (Partially)
  *
  * Total items required: 323632
  */
-export const combat2 = {
-    I: 80,
-    II: 160,
-    III: 320,
-    IV: 512,
-    V: 1280,
-    VI: 3840,
-    VII: 10240,
-    VIII: 20480,
-    IX: 40960,
-    X: 81920,
-    XI: 163840
+export const combat2 = buildProgressionData(
+    80,
+    160,
+    320,
+    512,
+    1280,
+    3840,
+    10240,
+    20480,
+    40960,
+    81920,
+    163840
+)
+
+/**
+ * @description Build a progression data object
+ * @returns The built object
+ * @function
+ * @generator
+ * @protected
+ *
+ * @param t1 The tier 1 data
+ * @param t2 The tier 2 data
+ * @param t3 The tier 3 data
+ * @param t4 The tier 4 data
+ * @param t5 The tier 5 data
+ * @param t6 The tier 6 data
+ * @param t7 The tier 7 data
+ * @param t8 The tier 8 data
+ * @param t9 The tier 9 data
+ * @param t10 The tier 10 data
+ * @param t11 The tier 11 data
+ *
+ * @summary Every object has each tier, the key to access the data a tier would be the roman numeral form of the tier ID
+ * @type Object
+ */
+let buildProgressionData = (t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11) => {
+    return {
+        I: t1,
+        II: t2,
+        III: t3,
+        IV: t4,
+        V: t5,
+        VI: t6,
+        VII: t7,
+        VIII: t8,
+        IX: t9,
+        X: t10,
+        XI: t11
+    }
 }

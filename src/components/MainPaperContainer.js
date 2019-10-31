@@ -17,6 +17,7 @@
 import React from "react"
 import Paper from "@material-ui/core/Paper"
 import BasicExplanation from "./BasicExplanation"
+import AuthorCard from "./AuthorCard"
 import TierSelector from "./selectors/TierSelector"
 import MinionSelector from "./selectors/MinionSelection"
 import ResultHolder from "./holders/ResultHolder"
@@ -115,8 +116,10 @@ export default props => {
                     </Tooltip>
                     {s}
                     {results}
-                    {s}
+                    {s}{s}
+                    <AuthorCard />
                 </Card>
+                {s}
             </Paper>
         </div>
     )

@@ -106,11 +106,11 @@ let cost = (tier, minion) => {
             return beanProgression[e]
         case Minions.lapislazuli:
             return lapisProgression[e]
-        case Minions.ice:
-            return iceProgression[e]
+        //case Minions.ice:
+        //    return iceProgression[e]
         default:
             return (
-                <ErrorHolder message="We don't have the data for this minion yet, but don't worry, we will soon" />
+                <ErrorHolder message="We don't have the data for this minion yet, but don't worry, we will soon" showReportButton={true} />
             )
     }
 }

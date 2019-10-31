@@ -19,10 +19,10 @@ import ReactMarkdown from "react-markdown"
 
 export default props => {
     let base = `## Result\n\nIt will take ${
-        props.meta[6]
+        props.meta[5]
     } raw items to make that minion.\n\n### Enchantments\n\n`
     // divide total cost by calculated price per enchanted item
-    let cost = props.meta[6] / props.meta[0]
+    let cost = props.meta[5] / props.meta[0]
     // eslint-disable-next-line
     let b1 = cost % 1 == 0
     if (props.meta[2] && b1) {

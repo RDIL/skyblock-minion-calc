@@ -26,11 +26,11 @@ export default props => {
     // eslint-disable-next-line
     let b1 = cost % 1 == 0
     if (props.meta[2] && b1) {
-        base +=
-            `In terms of enchanted items, it will cost ${cost}.` +
-            (props.meta[1]
-                ? `\n\n**Warning**: This item has an unusual enchanted item cost, and depending on the item may require more or less of the item to craft the enchanted form!`
-                : "")
+        base += `In terms of enchanted items, it will cost ${cost}.`
+        if (props.meta[1]) {
+            base +=
+                "\n\n**Warning**: This item has an unusual enchanted item cost, and depending on the item may require more or less of the item to craft the enchanted form!"
+        }
     } else if (props.meta[2] && !b1) {
         base +=
             "Failed to calculate because the number of enchanted items had decimals!"

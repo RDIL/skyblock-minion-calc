@@ -22,7 +22,10 @@ import { isFunction } from "underscore"
  * @returns The boolean value of if the passed item is a function or JSX
  * @param pushable The object to check
  */
-export let isJsxOrFunc = (pushable: Object | null) => {
+export let isJsxOrFunc = (pushable: Object | Function | null | undefined) => {
+    if (pushable == null || pushable == undefined) {
+        return false
+    }
     return isFunction(pushable)
 }
 

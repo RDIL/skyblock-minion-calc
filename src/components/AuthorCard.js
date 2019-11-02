@@ -22,10 +22,9 @@ import Copyright from "@material-ui/icons/CopyrightOutlined"
 export default props => {
     return (
         <div>
-            <br />
             <Typography variant="caption">
                 Copyright (<Copyright fontSize="inherit" />) 2019-present Reece
-                Dunham. Made with <Love fontSize="inherit" color="secondary" />.
+                Dunham. Made with <Love fontSize="inherit" color="secondary" />
             </Typography>
             <br />
             <br />
